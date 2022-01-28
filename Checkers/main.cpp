@@ -135,7 +135,7 @@ int MovePiece(int x, int y, Piece* s_Piece, Piece* RedPieces, Piece* WhitePieces
             }
             if (x == s_Piece->x + 2 && y == s_Piece->y - 2) {
                 if (!FindPiece(x, y, RedPieces, WhitePieces) && FindPiece(x - 1, y + 1, RedPieces, WhitePieces) != NULL && FindPiece(x - 1, y + 1, RedPieces, WhitePieces)->color != s_Piece->color) {
-                    *turn = 2;
+                    *turn = ((*turn == 1) ? 2 : 1);
                     KillPiece(x - 1, y + 1, RedPieces, WhitePieces, turn);
                     s_Piece->x = x;
                     s_Piece->y = y;
@@ -154,7 +154,7 @@ int MovePiece(int x, int y, Piece* s_Piece, Piece* RedPieces, Piece* WhitePieces
             }
             if (x == s_Piece->x + 1 && y == s_Piece->y + 1) {
                 if (!FindPiece(x, y, RedPieces, WhitePieces)) {
-                    *turn = 1;
+                    *turn = ((*turn == 1) ? 2 : 1);
                     s_Piece->x = x;
                     s_Piece->y = y;
                     return 1;
